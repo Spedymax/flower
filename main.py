@@ -1,74 +1,37 @@
 import turtle
-import random
+import math
 
-
-# Функция для рисования цветка на ветке с увеличенным размером
-def draw_flower():
-    turtle.color("pink")
-    for _ in range(3):  # Рисуем треугольник (цветок)
-        turtle.forward(15)  # Увеличиваем размер цветка
-        turtle.left(120)
-    turtle.color("green")
-
-
-# Функция для рисования ветви дерева
-def draw_branch(length, level):
-    if level == 0:
-        # На конце ветки рисуем цветок
-        turtle.color("green")  # Стебель остаётся зелёным
-        draw_flower()
-        return
-
-    # Рисуем ветви
-    turtle.color("green")
-    turtle.forward(length)
-    turtle.left(30)
-    draw_branch(length * 0.7, level - 1)
-
-    turtle.right(60)
-    draw_branch(length * 0.7, level - 1)
-
-    turtle.left(30)
-    turtle.backward(length)
-
-
-# Функция для настройки turtle
-def setup_turtle():
-    turtle.bgcolor("black")
-    turtle.speed(0)  # Умеренная скорость рисования для наблюдения процесса
-    turtle.pensize(2)  # Толщина основной ветви
-    turtle.color("green")
-    turtle.left(90)  # Поворот, чтобы дерево росло вверх
-    turtle.up()
-    turtle.backward(300)  # Начальная позиция внизу
-    turtle.down()
-
-
-# Основная программа для рисования дерева
-def draw_tree(levels):
-    setup_turtle()
-    draw_branch(150, levels)
-
-
-# Запрос количества уровней у пользователя
-levels = int(input("Насколько сильно вы любите Максимку? (От 1 до 8): "))
-while levels > 8 or levels < 1:
-    levels = int(input("Введи число от 1 до 8: "))
+t = turtle.Turtle()
 screen = turtle.Screen()
-rootwindow = screen.getcanvas().winfo_toplevel()
-rootwindow.call('wm', 'attributes', '.', '-topmost', '1')
-rootwindow.call('wm', 'attributes', '.', '-topmost', '0')
+screen.bgcolor("black")
+screen = turtle.Screen()
+screen.bgcolor("black")
+t.color("pink")
+t.speed(0)
 
-# Рисуем дерево
-draw_tree(levels)
 
-# Add a loving message
-turtle.penup()
-turtle.goto(0, -320)
-turtle.color("White")
-turtle.write(f"И я тебя люблю!", align="center", font=("Arial", 16, "bold"))
+def corazon(k):
+    return 16 * math.sin(k) ** 3
 
-turtle.hideturtle()
-# Add these lines to bring the window to the front
 
+def corazon1(k):
+    return 12 * math.cos(k) - 5 * math.cos(2 * k) - 2 * math.cos(3 * k) - math.cos(4 * k)
+
+
+t.penup()
+t.goto(corazon(1) * 18, corazon1(1) * 18)
+t.pendown()
+
+for i in range(600):
+    t.goto(corazon(i) * 18, corazon1(i) * 18)
+    for j in range(5):
+        t.color("pink")
+
+t.color("gold")
+t.penup()
+t.goto(115, -40)
+t.pendown()
+t.write("I LOVE YOU!", False, "right", ("arial", 30, "bold"))
+
+t.hideturtle()
 turtle.done()
