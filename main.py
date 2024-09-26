@@ -59,6 +59,7 @@ rootwindow = screen.getcanvas().winfo_toplevel()
 rootwindow.call('wm', 'attributes', '.', '-topmost', '1')
 rootwindow.call('wm', 'attributes', '.', '-topmost', '0')
 
+
 # Рисуем дерево
 draw_tree(levels)
 
